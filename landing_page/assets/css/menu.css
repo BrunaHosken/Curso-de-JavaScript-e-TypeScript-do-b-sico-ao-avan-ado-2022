@@ -5,6 +5,7 @@
   left: 0;
   right: 0;
   width: 100%;
+  z-index: 1;
 }
 .menu h1 {
   font-size: 2.3rem;
