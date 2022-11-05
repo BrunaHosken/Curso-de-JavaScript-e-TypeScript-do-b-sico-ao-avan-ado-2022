@@ -14,15 +14,17 @@
   justify-content: center;
 }
 
-.intro-text-content h2 {
-  font-size: 8rem;
-  margin-bottom: 5rem;
-  text-transform: uppercase;
-  line-height: 1.2;
-}
-
 .intro-img img,
 .intro-img scg {
   max-width: 100%;
   height: auto;
+}
+
+.top3-content {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  height: 100vh;
+  max-width: 64rem;
+  text-align: center;
 }
