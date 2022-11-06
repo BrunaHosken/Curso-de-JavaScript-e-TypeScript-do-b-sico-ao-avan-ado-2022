@@ -158,3 +158,22 @@
   margin: 0;
   padding: 3rem;
 }
+
+@media (max-width: 800px) {
+  .intro-content,
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .gallery-img img {
+    width: 100%;
+  }
+  .grid-one-content {
+    display: block;
+  }
+}
