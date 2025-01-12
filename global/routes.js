@@ -1,7 +1,7 @@
 const express = require("express");
 const route = express.Router();
-const homeController = require("../mod11_projetoagenda/src/controllers/homeController");
-const loginController = require("../mod11_projetoagenda/src/controllers/loginController");
+const homeController = require("../projetoagenda/src/controllers/homeController");
+const loginController = require("../projetoagenda/src/controllers/loginController");
 const path = require("path");
 
 // Rotas da agenda

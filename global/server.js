@@ -13,7 +13,7 @@ const {
   middlewareGlobal,
   checkCsrfError,
   csrfMiddleware,
-} = require("../mod11_projetoagenda/src/middlewares/middleware");
+} = require("./html/middlewares/middleware");
 
 // Conexão com o banco de dados
 mongoose
@@ -56,7 +56,7 @@ app.use(
 );
 app.use(
   "/agenda/public",
-  express.static(path.resolve(__dirname, "../mod11_projetoagenda/public"))
+  express.static(path.resolve(__dirname, "../projetoagenda/public"))
 );
 
 // Configuração de sessões
@@ -74,7 +74,7 @@ app.use(sessionOptions);
 app.use(flash());
 
 // Configuração das views
-app.set("views", path.resolve(__dirname, "../mod11_projetoagenda/src/views"));
+app.set("views", path.resolve(__dirname, "../projetoagenda/src/views"));
 app.set("view engine", "ejs");
 
 // Configuração de CSRF
@@ -89,8 +89,6 @@ app.use(routes);
 // Inicialização do servidor
 app.on("pronto", () => {
   app.listen(3000, () => {
-    console.log(path.resolve(__dirname, "../mod11_projetoagenda/public"));
-
     console.log("Acessar http://localhost:3000");
     console.log("Servidor executando na porta 3000");
   });
