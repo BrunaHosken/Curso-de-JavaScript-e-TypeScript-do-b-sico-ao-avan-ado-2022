@@ -7,7 +7,7 @@ const LoginSchema = new mongoose.Schema({
   password: { type: String, required: true },
 });
 
-const LoginModel = mongoose.model("Login", LoginSchema);
+const LoginModelAgenda = mongoose.model("LoginAgenda", LoginSchema);
 
 class Login {
   constructor(body) {
@@ -26,15 +26,11 @@ class Login {
     const salt = bcryptjs.genSaltSync();
     this.body.password = bcryptjs.hashSync(this.body.password, salt);
 
-    try {
-      this.user = await LoginModel.create(this.body);
-    } catch (e) {
-      console.log(e);
-    }
+    this.user = await LoginModelAgenda.create(this.body);
   }
 
   async userExists() {
-    const user = await LoginModel.findOne({ email: this.body.email });
+    const user = await LoginModelAgenda.findOne({ email: this.body.email });
     if (user) this.errors.push("Usuário já existe");
   }
 
