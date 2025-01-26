@@ -8,6 +8,8 @@ const path = require("path");
 route.get("/agenda", homeController.index);
 route.get("/agenda/login/index", loginController.index);
 route.post("/agenda/login/register", loginController.register);
+route.post("/agenda/login/login", loginController.login);
+route.get("/agenda/login/logout", loginController.logout);
 
 // Rota para a página inicial global
 route.get("/", (req, res) => {

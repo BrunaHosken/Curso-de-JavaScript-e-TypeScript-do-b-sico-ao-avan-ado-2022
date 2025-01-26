@@ -1,18 +1,18 @@
-<% if(errors.length > 0) { %>
+<% if(errorsAgenda.length > 0) { %>
 <div class="row">
   <div class="col my-3">
     <div class="alert alert-danger">
-      <% errors.forEach(erro => { %> <%= erro %> <br />
+      <% errorsAgenda.forEach(erro => { %> <%= erro %> <br />
       <% }); %>
     </div>
   </div>
 </div>
 
-<% } %> <% if(success.length > 0) { %>
+<% } %> <% if(successAgenda.length > 0) { %>
 <div class="row">
   <div class="col my-3">
     <div class="alert alert-success">
-      <% success.forEach(success => { %> <%= success %> <br />
+      <% successAgenda.forEach(successAgenda => { %> <%= successAgenda %> <br />
       <% }); %>
     </div>
   </div>
