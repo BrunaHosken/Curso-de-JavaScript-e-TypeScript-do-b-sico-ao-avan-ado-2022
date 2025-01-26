@@ -13,7 +13,7 @@ exports.register = async function (req, res) {
     if (login.errorsAgenda.length > 0) {
       req.flash("errorsAgenda", login.errorsAgenda);
       req.session.save(() => {
-        return res.redirect("/agenda/login/index");
+        return res.redirect("/agenda/login");
       });
       return;
     }
@@ -21,7 +21,7 @@ exports.register = async function (req, res) {
     req.flash("successAgenda", "Seu usuário foi criado com sucesso");
 
     req.session.save(() => {
-      return res.redirect("/agenda/login/index");
+      return res.redirect("/agenda/login");
     });
   } catch (e) {
     console.log(e);
@@ -37,7 +37,7 @@ exports.login = async function (req, res) {
     if (login.errorsAgenda.length > 0) {
       req.flash("errorsAgenda", login.errorsAgenda);
       req.session.save(() => {
-        return res.redirect("/agenda/login/index");
+        return res.redirect("/agenda/login");
       });
       return;
     }
@@ -45,7 +45,7 @@ exports.login = async function (req, res) {
     req.flash("successAgenda", "Você entrou no sistema");
     req.session.userAgenda = login.userAgenda;
     req.session.save(() => {
-      return res.redirect("/agenda/login/index");
+      return res.redirect("/agenda/login");
     });
   } catch (e) {
     console.log(e);

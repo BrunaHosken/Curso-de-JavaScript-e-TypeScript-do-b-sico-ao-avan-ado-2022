@@ -6,7 +6,7 @@ const path = require("path");
 
 // Rotas da agenda
 route.get("/agenda", homeController.index);
-route.get("/agenda/login/index", loginController.index);
+route.get("/agenda/login", loginController.index);
 route.post("/agenda/login/register", loginController.register);
 route.post("/agenda/login/login", loginController.login);
 route.get("/agenda/login/logout", loginController.logout);
