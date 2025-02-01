@@ -23,6 +23,7 @@ route.post(
   loginRequired,
   contatoController.register
 );
+route.post("/agenda/contato/edit/:id", loginRequired, contatoController.edit);
 
 // Rota para a página inicial global
 route.get("/", (req, res) => {

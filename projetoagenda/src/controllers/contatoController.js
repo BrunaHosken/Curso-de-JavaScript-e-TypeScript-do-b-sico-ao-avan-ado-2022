@@ -29,13 +29,36 @@ exports.register = async (req, res) => {
 };
 
 exports.editIndex = async (req, res) => {
-  console.log(req.params.id);
   if (!req.params.id) return res.render("404");
 
   const contato = await Contato.buscaPorId(req.params.id);
-  console.log("editIndex", contato);
   if (!contato) return res.render("404");
+
   res.render("contato", {
     contato,
   });
+};
+
+exports.edit = async (req, res) => {
+  try {
+    if (!req.params.id) return res.render("404");
+
+    const contato = new Contato(req.body);
+    await contato.edit(req.params.id);
+
+    if (contato.errorsAgenda.length > 0) {
+      req.flash("errorsAgenda", contato.errorsAgenda);
+      req.session.save(() => res.redirect(`/agenda/contato/${req.params.id}`));
+      return;
+    }
+
+    req.flash("successAgenda", "Contato editado com sucesso.");
+    req.session.save(() =>
+      res.redirect(`/agenda/contato/${contato.contato._id}`)
+    );
+    return;
+  } catch (e) {
+    console.log(e);
+    return res.render("404");
+  }
 };

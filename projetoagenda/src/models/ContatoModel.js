@@ -19,14 +19,20 @@ function Contato(body) {
 }
 
 Contato.buscaPorId = async function (id) {
-  console.log(id);
-  console.log(typeof id);
-  if (typeof id !== "string") return;
-  // const objectId = new mongoose.Types.ObjectId(id);
-  // console.log("object", objectId);
   const user = await ContatoModel.findById(id);
-  console.log("user", user);
   return user;
+};
+
+Contato.prototype.edit = async function (id) {
+  if (typeof id !== "string") return;
+
+  this.valida();
+
+  if (this.errorsAgenda.length > 0) return;
+
+  this.contato = await ContatoModel.useFindAndModify(id, this.body, {
+    new: true,
+  });
 };
 
 Contato.prototype.register = async function () {
