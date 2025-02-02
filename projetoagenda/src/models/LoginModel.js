@@ -40,7 +40,7 @@ class Login {
     this.valida();
     if (this.errorsAgenda.length > 0) return;
 
-    await this.userAgendaExists();
+    await this.userExists();
 
     if (this.errorsAgenda.length > 0) return;
 

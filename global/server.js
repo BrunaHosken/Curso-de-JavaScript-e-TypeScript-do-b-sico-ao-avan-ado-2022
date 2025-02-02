@@ -59,6 +59,7 @@ app.use(
   "/agenda/public",
   express.static(path.resolve(__dirname, "../projetoagenda/public"))
 );
+app.use("/public", express.static(path.resolve(__dirname, "public")));
 
 // Configuração de sessões
 const sessionOptions = session({
