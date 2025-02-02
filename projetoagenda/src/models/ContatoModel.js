@@ -19,8 +19,17 @@ function Contato(body) {
 }
 
 Contato.buscaPorId = async function (id) {
-  const user = await ContatoModel.findById(id);
-  return user;
+  const contato = await ContatoModel.findById(id);
+  return contato;
+};
+
+Contato.buscaContatos = async function () {
+  const contatos = await ContatoModel.find().sort({ criadoEm: -1 });
+  return contatos;
+};
+Contato.delete = async function (id) {
+  const contato = await ContatoModel.findOneAndDelete({ _id: id });
+  return contato;
 };
 
 Contato.prototype.edit = async function (id) {
@@ -30,7 +39,7 @@ Contato.prototype.edit = async function (id) {
 
   if (this.errorsAgenda.length > 0) return;
 
-  this.contato = await ContatoModel.useFindAndModify(id, this.body, {
+  this.contato = await ContatoModel.findByIdAndUpdate(id, this.body, {
     new: true,
   });
 };
