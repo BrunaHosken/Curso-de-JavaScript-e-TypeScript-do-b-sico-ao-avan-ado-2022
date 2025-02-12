@@ -1,10 +1,10 @@
 const express = require("express");
 const route = express.Router();
-const homeController = require("../projetoagenda/src/controllers/homeController");
-const loginController = require("../projetoagenda/src/controllers/loginController");
-const contatoController = require("../projetoagenda/src/controllers/contatoController");
+const homeController = require("./projetos/projetoagenda/src/controllers/homeController");
+const loginController = require("./projetos/projetoagenda/src/controllers/loginController");
+const contatoController = require("./projetos/projetoagenda/src/controllers/contatoController");
 
-const { loginRequired } = require("./html/middlewares/middleware");
+const { loginRequired } = require("./global/html/middlewares/middleware");
 
 const path = require("path");
 
@@ -38,6 +38,11 @@ route.get("/", (req, res) => {
 // Rota para a landing page
 route.get("/landing_page", (req, res) => {
   res.sendFile(path.join(__dirname, "../landing_page/index.html"));
+});
+
+// Rota para api rest
+route.get("/api_rest", (req, res) => {
+  res.sendFile(path.join(__dirname, "../api_rest/html/index.html"));
 });
 
 module.exports = route;

@@ -3,7 +3,7 @@ const path = require("path");
 module.exports = {
   mode: "production",
   entry: {
-    projetoagenda: "../projetoagenda/frontend/main.js",
+    projetoagenda: "./projetos/projetoagenda/frontend/main.js",
   },
   output: {
     path: path.resolve(__dirname, "public", "assets", "js"),

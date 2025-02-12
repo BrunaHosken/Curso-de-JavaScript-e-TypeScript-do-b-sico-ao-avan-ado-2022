@@ -1,5 +1,6 @@
-const validator = require("../../../global/node_modules/validator");
-export default class Login {
+const validator = require("validator");
+
+class Login {
   constructor(formClass) {
     this.form = document.querySelector(formClass);
   }
@@ -19,8 +20,8 @@ export default class Login {
 
   validate(e) {
     const el = e.target;
-    const emailInput = el.querySelector('input[name="email"]');
-    const passwordInput = el.querySelector('input[name="password"]');
+    const emailInput = el.querySelector("input[name='email']");
+    const passwordInput = el.querySelector("input[name='password']");
     let error = false;
 
     if (!validator.isEmail(emailInput.value)) {
@@ -35,3 +36,5 @@ export default class Login {
     if (!error) el.submit();
   }
 }
+
+module.exports = Login;

@@ -1,6 +1,6 @@
-const validator = require("../../../global/node_modules/validator");
-const mongoose = require("../../../global/node_modules/mongoose");
-const bcryptjs = require("../../../global/node_modules/bcryptjs");
+const validator = require("validator");
+const mongoose = require("mongoose");
+const bcryptjs = require("bcryptjs");
 
 const LoginSchema = new mongoose.Schema({
   email: { type: String, required: true },
@@ -26,12 +26,14 @@ class Login {
 
     if (!this.userAgenda) {
       this.errorsAgenda.push("Usuário não existe");
+
       return;
     }
 
     if (!bcryptjs.compareSync(this.body.password, this.userAgenda.password)) {
       this.errorsAgenda.push("Senha inválida");
       this.userAgenda = null;
+
       return;
     }
   }
@@ -45,6 +47,7 @@ class Login {
     if (this.errorsAgenda.length > 0) return;
 
     const salt = bcryptjs.genSaltSync();
+
     this.body.password = bcryptjs.hashSync(this.body.password, salt);
 
     this.userAgenda = await LoginModelAgenda.create(this.body);
@@ -52,6 +55,7 @@ class Login {
 
   async userExists() {
     const user = await LoginModelAgenda.findOne({ email: this.body.email });
+
     if (user) this.errorsAgenda.push("Usuário já existe");
   }
 

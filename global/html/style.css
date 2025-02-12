@@ -85,5 +85,14 @@ h6 {
 }
 
 .links a:nth-of-type(3)::before {
-  content: "Entre em contato conosco";
+  content: "JavaScript, Node, Express e SQL (MySQL ou MariaDB)";
+}
+
+.disabled {
+  color: #ccc !important;
+  cursor: default;
+}
+
+.disabled::after {
+  background: #fff !important;
 }

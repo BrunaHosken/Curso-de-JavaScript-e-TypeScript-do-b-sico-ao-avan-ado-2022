@@ -1,6 +1,5 @@
-const { type } = require("os");
-const mongoose = require("../../../global/node_modules/mongoose");
-const validator = require("../../../global/node_modules/validator");
+const mongoose = require("mongoose");
+const validator = require("validator");
 
 const ContatoSchema = new mongoose.Schema({
   nome: { type: String, required: true },
@@ -20,15 +19,18 @@ function Contato(body) {
 
 Contato.buscaPorId = async function (id) {
   const contato = await ContatoModel.findById(id);
+
   return contato;
 };
 
 Contato.buscaContatos = async function () {
   const contatos = await ContatoModel.find().sort({ criadoEm: -1 });
+
   return contatos;
 };
 Contato.delete = async function (id) {
   const contato = await ContatoModel.findOneAndDelete({ _id: id });
+
   return contato;
 };
 

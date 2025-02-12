@@ -13,7 +13,7 @@ const {
   middlewareGlobal,
   checkCsrfError,
   csrfMiddleware,
-} = require("./html/middlewares/middleware");
+} = require("./global/html/middlewares/middleware");
 
 // Conexão com o banco de dados
 mongoose
@@ -48,16 +48,20 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Configuração de arquivos estáticos
-app.use(express.static(path.join(__dirname, "html")));
+app.use(express.static(path.join(__dirname, "./global/html")));
 
 app.use(
   "/landing_page",
-
-  express.static(path.resolve(__dirname, "../landing_page"))
+  express.static(path.resolve(__dirname, "./projetos/landing_page"))
 );
 app.use(
+  "/api_rest",
+  express.static(path.resolve(__dirname, "./projetos/api_rest/html"))
+);
+
+app.use(
   "/agenda/public",
-  express.static(path.resolve(__dirname, "../projetoagenda/public"))
+  express.static(path.resolve(__dirname, "./projetos/projetoagenda/public"))
 );
 app.use("/public", express.static(path.resolve(__dirname, "public")));
 
@@ -72,11 +76,12 @@ const sessionOptions = session({
     httpOnly: true,
   },
 });
+
 app.use(sessionOptions);
 app.use(flash());
 
 // Configuração das views
-app.set("views", path.resolve(__dirname, "../projetoagenda/src/views"));
+app.set("views", path.resolve(__dirname, "./projetos/projetoagenda/src/views"));
 app.set("view engine", "ejs");
 
 // Configuração de CSRF
