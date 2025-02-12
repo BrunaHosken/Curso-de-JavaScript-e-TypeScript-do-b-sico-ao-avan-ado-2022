@@ -32,17 +32,17 @@ route.post("/agenda/contato/edit/:id", loginRequired, contatoController.edit);
 
 // Rota para a página inicial global
 route.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../global/html/index.html"));
+  res.sendFile(path.join(__dirname, "./global/html/index.html"));
 });
 
 // Rota para a landing page
 route.get("/landing_page", (req, res) => {
-  res.sendFile(path.join(__dirname, "../landing_page/index.html"));
+  res.sendFile(path.join(__dirname, "./projetos/landing_page/index.html"));
 });
 
 // Rota para api rest
 route.get("/api_rest", (req, res) => {
-  res.sendFile(path.join(__dirname, "../api_rest/html/index.html"));
+  res.sendFile(path.join(__dirname, "./projetos/api_rest/html/index.html"));
 });
 
 module.exports = route;
