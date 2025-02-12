@@ -2,12 +2,14 @@ const Login = require("../models/LoginModel");
 
 exports.index = (req, res) => {
   if (req.session.userAgenda) return res.render("login-logado");
+
   return res.render("login");
 };
 
 exports.register = async function (req, res) {
   try {
     const login = new Login(req.body);
+
     await login.register();
 
     if (login.errorsAgenda.length > 0) {
@@ -15,6 +17,7 @@ exports.register = async function (req, res) {
       req.session.save(() => {
         return res.redirect("/agenda/login");
       });
+
       return;
     }
 
@@ -25,6 +28,7 @@ exports.register = async function (req, res) {
     });
   } catch (e) {
     console.log(e);
+
     return res.render("404");
   }
 };
@@ -32,6 +36,7 @@ exports.register = async function (req, res) {
 exports.login = async function (req, res) {
   try {
     const login = new Login(req.body);
+
     await login.login();
 
     if (login.errorsAgenda.length > 0) {
@@ -39,6 +44,7 @@ exports.login = async function (req, res) {
       req.session.save(() => {
         return res.redirect("/agenda/login");
       });
+
       return;
     }
 
@@ -49,6 +55,7 @@ exports.login = async function (req, res) {
     });
   } catch (e) {
     console.log(e);
+
     return res.render("404");
   }
 };
