@@ -1,3 +1,27 @@
 .documentation {
   padding-top: 10rem;
 }
+
+.data {
+  margin: 2rem;
+}
+
+.info-route {
+  margin: 2rem;
+}
+
+.info-data {
+  margin-bottom: 3rem;
+}
+.info-data li {
+  list-style-type: "-";
+  padding-left: 1rem;
+}
+
+code {
+  border-radius: 5px;
+  background-color: var(--light-gray-color);
+  border: 1px solid var(--gray-color);
+  color: var(--secondary-color);
+  padding: 0 1rem;
+}
