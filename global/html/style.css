@@ -85,7 +85,7 @@ h6 {
 }
 
 .links a:nth-of-type(3)::before {
-  content: "JavaScript, Node, Express e SQL (MySQL ou MariaDB)";
+  content: "JavaScript, Node, Express e SQL (MariaDB)";
 }
 
 .disabled {
