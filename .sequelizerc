@@ -1,0 +1,30 @@
+const { resolve } = require("path");
+const projetos = "api_rest";
+
+module.exports = {
+  config: resolve(
+    __dirname,
+    "projetos",
+    projetos,
+    "src",
+    "config",
+    "database.js"
+  ),
+  "models-path": resolve(__dirname, "projetos", projetos, "src", "models"),
+  "migrations-path": resolve(
+    __dirname,
+    "projetos",
+    projetos,
+    "src",
+    "database",
+    "migrations"
+  ),
+  "seeders-path": resolve(
+    __dirname,
+    "projetos",
+    projetos,
+    "src",
+    "database",
+    "seed"
+  ),
+};

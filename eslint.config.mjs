@@ -64,7 +64,7 @@ export default [
       "keyword-spacing": ["error", { before: true, after: true }],
       "space-infix-ops": "error",
       "brace-style": ["error", "1tbs"],
-      camelcase: "error",
+      camelcase: ["error", { properties: "never" }],
       "max-len": ["error", { code: 100 }],
       "object-curly-spacing": ["error", "always"],
       "array-bracket-spacing": ["error", "never"],

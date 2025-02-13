@@ -1,4 +1,7 @@
-require("dotenv").config();
+const dotenv = require("dotenv");
+
+dotenv.config();
+
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -15,13 +18,11 @@ const {
   csrfMiddleware,
 } = require("./global/html/middlewares/middleware");
 
+const apiRest = require("./projetos/api_rest/api/app");
+
 // Conexão com o banco de dados
 mongoose
-  .connect(process.env.CONNECTIONSTRING, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-  })
+  .connect(process.env.CONNECTIONSTRINGMONGO)
   .then(() => {
     app.emit("pronto");
   })
@@ -54,6 +55,7 @@ app.use(
   "/landing_page",
   express.static(path.resolve(__dirname, "./projetos/landing_page"))
 );
+
 app.use(
   "/api_rest",
   express.static(path.resolve(__dirname, "./projetos/api_rest/html"))
@@ -63,12 +65,15 @@ app.use(
   "/agenda/public",
   express.static(path.resolve(__dirname, "./projetos/projetoagenda/public"))
 );
+
 app.use("/public", express.static(path.resolve(__dirname, "public")));
+
+app.use(apiRest);
 
 // Configuração de sessões
 const sessionOptions = session({
   secret: "akasdfj0út23453456+54qt23qv  qwf qwer qwer qewr asdasdasda a6()",
-  store: MongoStore.create({ mongoUrl: process.env.CONNECTIONSTRING }),
+  store: MongoStore.create({ mongoUrl: process.env.CONNECTIONSTRINGMONGO }),
   resave: false,
   saveUninitialized: false,
   cookie: {
@@ -96,7 +101,8 @@ app.use(routes);
 // Inicialização do servidor
 app.on("pronto", () => {
   app.listen(3000, () => {
-    console.log("Acessar http://localhost:3000");
-    console.log("Servidor executando na porta 3000");
+    console.log(
+      "Servidor executando na porta 3000, acesse http://localhost:3000"
+    );
   });
 });
