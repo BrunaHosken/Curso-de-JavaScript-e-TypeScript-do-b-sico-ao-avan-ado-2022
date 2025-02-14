@@ -24,7 +24,6 @@
       <div class="data">
         <p>Link para acessar no Insomnia -> http://35.247.229.37/api_rest</p>
 
-        <p>Rotas e informações</p>
         <ul class="info-route">
           <li class="toggle-info">Index</li>
           <ul class="info-data">
@@ -38,10 +37,72 @@
 
           <li class="toggle-info">Usuário</li>
           <ul class="info-data">
+            <li class="toggle-info">Listar Usuários</li>
+            <ul class="info-data">
+              <li>O que faz: Lista todos os usuarios</li>
+              <li>Rota: <code>/users/</code></li>
+              <li>Tipo: <code>GET</code></li>
+              <li>
+                Dados para enviar: <code>Não é necessário enviar dados</code>
+              </li>
+              <li>
+                Exemplo retorno:
+                <pre>
+[
+  {
+    "id": 1,
+    "nome": "Teste 1",
+    "email": "teste@mail.com",
+    "password_hash": "$2a$08$wsCmULqNA3krKzB6CWtwLeu.deZBJNqr2PF2Y/PzQvt23ghcSfA9K",
+    "created_at": "2025-02-13T22:08:13.000Z",
+    "updated_at": "2025-02-13T22:08:13.000Z"
+  },
+  {
+    "id": 6,
+    "nome": "Teste 2",
+    "email": "teste@mail.com",
+    "password_hash": "$2a$08$YFK/.wEEqLACCkSN2OjmW.rh/LpewuXcKFefGE05ii.kRHXnwo3Tq",
+    "created_at": "2025-02-13T23:00:44.000Z",
+    "updated_at": "2025-02-13T23:00:44.000Z"
+  }
+]
+</pre
+                >
+              </li>
+            </ul>
+
+            <li class="toggle-info">Listar Usuário por Id</li>
+            <ul class="info-data">
+              <li>O que faz: Lista um usuario especifico</li>
+              <li>Rota: <code>/users/:id</code></li>
+              <li>Tipo: <code>GET</code></li>
+
+              <li>
+                Dados para enviar: É necessário incluir o ID do usuário na URL.
+                <br />
+                Exemplo:
+                <code>/users/6</code>
+              </li>
+              <li>
+                Exemplo retorno:
+                <pre>
+{
+  "id": 6,
+  "nome": "Teste 2",
+  "email": "teste@mail.com",
+  "password_hash": "$2a$08$YFK/.wEEqLACCkSN2OjmW.rh/LpewuXcKFefGE05ii.kRHXnwo3Tq",
+  "created_at": "2025-02-13T23:00:44.000Z",
+  "updated_at": "2025-02-13T23:00:44.000Z"
+}</pre
+                >
+              </li>
+            </ul>
             <li class="toggle-info">Cadastrar Usuário</li>
             <ul class="info-data">
+              <li>O que faz: Cadastra um novo usuário</li>
               <li>Rota: <code>/users/</code></li>
               <li>Tipo: <code>POST</code></li>
+
               <li>
                 Dados para enviar:
                 <pre>
@@ -52,6 +113,16 @@
 }</pre
                 >
               </li>
+              <li>Validações:</li>
+              <ul>
+                Nome: Campo deve ter entre 3 e 255 caracteres
+              </ul>
+              <ul>
+                Senha: Campo deve ter entre 6 e 50 caracteres
+              </ul>
+              <ul>
+                Email: Deve ser do tipo email (Ex: @mail.com)
+              </ul>
               <li>
                 Exemplo retorno:
                 <pre>
@@ -67,6 +138,29 @@
 </pre
                 >
               </li>
+            </ul>
+
+            <li class="toggle-info">Editar Usuário</li>
+            <ul class="info-data">
+              <li>O que faz: Edita um usuário específico</li>
+              <li>Rota: <code>/users/:id</code></li>
+              <li>Tipo: <code>PUT</code></li>
+
+              <li>
+                Dados para enviar: É necessário incluir o ID do usuário na URL.
+                <br />
+                Exemplo:
+                <code>/users/6</code>
+                <br />
+                Exemplo de dados editados:
+                <pre>
+{ 
+  "nome": "Teste Editado", 
+  "email": "teste_editado@mail.com", 
+  "password": "senhaTesteEditado" 
+}</pre
+                >
+              </li>
               <li>Validações:</li>
               <ul>
                 Nome: Campo deve ter entre 3 e 255 caracteres
@@ -77,6 +171,39 @@
               <ul>
                 Email: Deve ser do tipo email (Ex: @mail.com)
               </ul>
+              <li>
+                Exemplo retorno:
+                <pre>
+{
+  "id": 6,
+  "nome": "Teste Editado",
+  "email": "teste_editado@mail.com",
+  "password_hash": "$2a$08$30En6uemb1VA0UyZYHHGJONbz70LLKc1sRz6iocafQu2T4B9UBySK",
+  "created_at": "2025-02-13T23:00:44.000Z",
+  "updated_at": "2025-02-14T16:27:05.063Z",
+  "password": "senhaTesteEditado"
+}
+</pre
+                >
+              </li>
+            </ul>
+
+            <li class="toggle-info">Excluir Usuário</li>
+            <ul class="info-data">
+              <li>O que faz: Excluir um usuario especifico</li>
+              <li>Rota: <code>/users/:id</code></li>
+              <li>Tipo: <code>DELETE</code></li>
+
+              <li>
+                Dados para enviar: É necessário incluir o ID do usuário na URL.
+                <br />
+                Exemplo:
+                <code>/users/9</code>
+              </li>
+              <li>
+                Exemplo retorno:
+                <pre>"9"</pre>
+              </li>
             </ul>
           </ul>
         </ul>

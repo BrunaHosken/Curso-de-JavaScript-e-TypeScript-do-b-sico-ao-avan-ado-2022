@@ -17,6 +17,7 @@ class App {
   }
 
   routes() {
+    console.log("aqui");
     this.app.use("/api_rest/", homeRoutes);
     this.app.use("/api_rest/users/", userRoutes);
   }
