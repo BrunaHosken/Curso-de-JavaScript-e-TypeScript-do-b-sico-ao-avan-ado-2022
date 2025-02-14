@@ -9,7 +9,9 @@
     "dev": "webpack -w",
     "migration:api": "sequelize migration:create --migrations-path projetos/api_rest/src/database/migrations",
     "migrate:api": "sequelize db:migrate --migrations-path projetos/api_rest/src/database/migrations",
-    "migrate:undo:api": "sequelize db:migrate:undo --migrations-path projetos/api_rest/src/database/migrations"
+    "seed:api": "sequelize seed:generate --seeders-path projetos/api_rest/src/database/seed",
+    "migrate:undo:api": "sequelize db:migrate:undo --migrations-path projetos/api_rest/src/database/migrations",
+    "seed:all": "node run-seeds.js"
   },
   "keywords": [],
   "author": "",
@@ -46,6 +48,7 @@
     "sequelize-cli": "^6.6.2",
     "sucrase": "^3.35.0",
     "typescript-eslint": "^8.24.0",
+    "umzug": "^3.8.2",
     "webpack": "^5.27.0",
     "webpack-cli": "^4.5.0"
   }
