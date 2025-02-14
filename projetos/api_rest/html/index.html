@@ -22,24 +22,111 @@
       <h1>Documentação Api Rest</h1>
 
       <div class="data">
-        <p>Link para acessar no insomnia -> http://35.247.229.37/api_rest</p>
+        <p>Link para acessar no Insomnia -> http://35.247.229.37/api_rest</p>
 
         <p>Rotas e informações</p>
         <ul class="info-route">
-          <li>Index</li>
+          <li class="toggle-info">Index</li>
           <ul class="info-data">
             <li>Rota: <code>/home</code></li>
-            <li>Dados para enviar:</li>
-            <li>Exemplo retorno:</li>
+            <li>Tipo: <code>GET</code></li>
+            <li>
+              Dados para enviar: <code>Não é necessário enviar dados</code>
+            </li>
+            <li>Exemplo retorno: <code>Status 200 - OK</code></li>
           </ul>
-          <li>Index</li>
+
+          <li class="toggle-info">Usuário</li>
           <ul class="info-data">
-            <li>Rota: <code>/home</code></li>
-            <li>Dados para enviar:</li>
-            <li>Exemplo retorno:</li>
+            <li class="toggle-info">Cadastrar Usuário</li>
+            <ul class="info-data">
+              <li>Rota: <code>/users/</code></li>
+              <li>Tipo: <code>POST</code></li>
+              <li>
+                Dados para enviar:
+                <pre>
+{ 
+  "nome": "Teste", 
+  "email": "teste@mail.com", 
+  "password": "senhaTeste" 
+}</pre
+                >
+              </li>
+              <li>
+                Exemplo retorno:
+                <pre>
+{ 
+  "password_hash":"$2a$08$YFK/.wEEqLACCkSN2OjmW.rh/LpewuXcKFefGE05ii.kRHXnwo3Tq",
+  "id": 6, 
+  "nome": "Teste", 
+  "email": "teste@mail.com", 
+  "password": "senhaTeste", 
+  "updated_at": "2025-02-13T23:00:44.466Z",
+  "created_at": "2025-02-13T23:00:44.466Z" 
+}
+</pre
+                >
+              </li>
+              <li>Validações:</li>
+              <ul>
+                Nome: Campo deve ter entre 3 e 255 caracteres
+              </ul>
+              <ul>
+                Senha: Campo deve ter entre 6 e 50 caracteres
+              </ul>
+              <ul>
+                Email: Deve ser do tipo email (Ex: @mail.com)
+              </ul>
+            </ul>
           </ul>
         </ul>
       </div>
     </section>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const toggles = document.querySelectorAll(".toggle-info");
+
+        toggles.forEach((toggle) => {
+          toggle.addEventListener("click", function (event) {
+            event.stopPropagation();
+
+            const currentInfoData = this.nextElementSibling;
+
+            if (
+              currentInfoData &&
+              currentInfoData.classList.contains("info-data")
+            ) {
+              const parentUl = this.closest("ul");
+              const allSiblings = parentUl.querySelectorAll(
+                ":scope > .info-data"
+              );
+
+              if (!currentInfoData.classList.contains("active")) {
+                currentInfoData
+                  .querySelectorAll(".info-data.active")
+                  .forEach((nested) => {
+                    nested.classList.remove("active");
+                  });
+              }
+
+              allSiblings.forEach((sibling) => {
+                if (sibling !== currentInfoData) {
+                  sibling.classList.remove("active");
+
+                  sibling
+                    .querySelectorAll(".info-data.active")
+                    .forEach((nested) => {
+                      nested.classList.remove("active");
+                    });
+                }
+              });
+
+              currentInfoData.classList.toggle("active");
+            }
+          });
+        });
+      });
+    </script>
   </body>
 </html>
