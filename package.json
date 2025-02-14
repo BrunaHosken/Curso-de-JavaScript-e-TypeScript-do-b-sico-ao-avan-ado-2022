@@ -6,7 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js --ignore public --ignore frontend",
-    "dev": "webpack -w"
+    "dev": "webpack -w",
+    "migration:api": "sequelize migration:create --migrations-path projetos/api_rest/src/database/migrations",
+    "migrate:api": "sequelize db:migrate --migrations-path projetos/api_rest/src/database/migrations",
+    "migrate:undo:api": "sequelize db:migrate:undo --migrations-path projetos/api_rest/src/database/migrations"
   },
   "keywords": [],
   "author": "",
