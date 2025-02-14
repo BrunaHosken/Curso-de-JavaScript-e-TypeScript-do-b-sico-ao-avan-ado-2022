@@ -26,6 +26,7 @@
     "express": "^4.21.2",
     "express-session": "^1.17.1",
     "helmet": "^4.4.1",
+    "jsonwebtoken": "^9.0.2",
     "mariadb": "^3.4.0",
     "mongoose": "^8.10.0",
     "regenerator-runtime": "^0.13.7",

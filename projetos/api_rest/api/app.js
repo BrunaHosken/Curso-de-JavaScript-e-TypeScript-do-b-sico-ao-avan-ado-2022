@@ -1,6 +1,7 @@
 const express = require("express");
 const homeRoutes = require("../src/routes/homeRoutes");
 const userRoutes = require("../src/routes/userRoutes");
+const tokenRoutes = require("../src/routes/tokenRoutes");
 
 require("../src/database");
 
@@ -17,9 +18,9 @@ class App {
   }
 
   routes() {
-    console.log("aqui");
     this.app.use("/api_rest/", homeRoutes);
     this.app.use("/api_rest/users/", userRoutes);
+    this.app.use("/api_rest/tokens/", tokenRoutes);
   }
 }
 

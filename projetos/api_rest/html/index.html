@@ -53,17 +53,11 @@
     "id": 1,
     "nome": "Teste 1",
     "email": "teste@mail.com",
-    "password_hash": "$2a$08$wsCmULqNA3krKzB6CWtwLeu.deZBJNqr2PF2Y/PzQvt23ghcSfA9K",
-    "created_at": "2025-02-13T22:08:13.000Z",
-    "updated_at": "2025-02-13T22:08:13.000Z"
   },
   {
     "id": 6,
     "nome": "Teste 2",
     "email": "teste@mail.com",
-    "password_hash": "$2a$08$YFK/.wEEqLACCkSN2OjmW.rh/LpewuXcKFefGE05ii.kRHXnwo3Tq",
-    "created_at": "2025-02-13T23:00:44.000Z",
-    "updated_at": "2025-02-13T23:00:44.000Z"
   }
 ]
 </pre
@@ -89,10 +83,7 @@
 {
   "id": 6,
   "nome": "Teste 2",
-  "email": "teste@mail.com",
-  "password_hash": "$2a$08$YFK/.wEEqLACCkSN2OjmW.rh/LpewuXcKFefGE05ii.kRHXnwo3Tq",
-  "created_at": "2025-02-13T23:00:44.000Z",
-  "updated_at": "2025-02-13T23:00:44.000Z"
+  "email": "teste@mail.com"
 }</pre
                 >
               </li>
@@ -142,17 +133,20 @@
 
             <li class="toggle-info">Editar Usuário</li>
             <ul class="info-data">
-              <li>O que faz: Edita um usuário específico</li>
-              <li>Rota: <code>/users/:id</code></li>
+              <li>O que faz: Edita o usuário logado</li>
+              <li>Rota: <code>/users/</code></li>
               <li>Tipo: <code>PUT</code></li>
+              <li>Necesário token obtido no <code>/tokens/</code></li>
 
               <li>
-                Dados para enviar: É necessário incluir o ID do usuário na URL.
+                Dados para enviar:
+                <code>
+                  O usuario só consegue editar a si mesmo, não é necessário
+                  enviar o id
+                </code>
                 <br />
-                Exemplo:
-                <code>/users/6</code>
-                <br />
-                Exemplo de dados editados:
+                Exemplo de dados a serem enviados:
+
                 <pre>
 { 
   "nome": "Teste Editado", 
@@ -190,21 +184,51 @@
 
             <li class="toggle-info">Excluir Usuário</li>
             <ul class="info-data">
-              <li>O que faz: Excluir um usuario especifico</li>
-              <li>Rota: <code>/users/:id</code></li>
+              <li>O que faz: Excluir o usuario logado</li>
+              <li>Rota: <code>/users/</code></li>
               <li>Tipo: <code>DELETE</code></li>
+              <li>Necesário token obtido no <code>/tokens/</code></li>
 
               <li>
-                Dados para enviar: É necessário incluir o ID do usuário na URL.
-                <br />
-                Exemplo:
-                <code>/users/9</code>
+                Dados para enviar:
+                <code>
+                  Não é necessário enviar dados, dado que o usuário só terá
+                  permissão para excluir a si mesmo
+                </code>
               </li>
               <li>
                 Exemplo retorno:
-                <pre>"9"</pre>
+                <pre>"Usuário excluido!"</pre>
               </li>
             </ul>
+          </ul>
+
+          <li class="toggle-info">Tokens</li>
+          <ul class="info-data">
+            <li>O que faz: Gera o token de autenticação com prazo de 7 dias</li>
+            <li>Rota: <code>/tokens/</code></li>
+            <li>Tipo: <code>POST</code></li>
+
+            <li>
+              Dados para enviar:
+              <pre>
+{
+  "email": "teste@mail.com",
+  "password": "abc123"
+}
+             </pre
+              >
+            </li>
+            <li>
+              Exemplo retorno:
+              <pre>
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImVt
+            YWlsIjoidGVzdGVAbWFpbC5jb20iLCJpYXQiOjE3Mzk1NTU3OTYsImV4c
+            CI6MTc0MDE2MDU5Nn0.1_SwbmpgpvCyIwqt3oG8QjVnGyqo6xv4eOc5IbhMc64"
+}</pre
+              >
+            </li>
           </ul>
         </ul>
       </div>
