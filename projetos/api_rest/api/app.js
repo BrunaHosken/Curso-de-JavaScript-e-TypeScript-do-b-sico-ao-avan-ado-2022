@@ -1,5 +1,6 @@
 const express = require("express");
 const homeRoutes = require("../src/routes/homeRoutes");
+const userRoutes = require("../src/routes/userRoutes");
 
 require("../src/database");
 
@@ -17,6 +18,7 @@ class App {
 
   routes() {
     this.app.use("/api_rest/", homeRoutes);
+    this.app.use("/api_rest/users/", userRoutes);
   }
 }
 
