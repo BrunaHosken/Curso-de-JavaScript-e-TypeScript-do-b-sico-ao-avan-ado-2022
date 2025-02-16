@@ -1,4 +1,5 @@
 const { Sequelize, Model } = require("sequelize");
+const appConfig = require("../../../../appConfig");
 
 module.exports = class Foto extends Model {
   static init(sequelize) {
@@ -20,6 +21,12 @@ module.exports = class Foto extends Model {
             notEmpty: {
               msg: "Campo não pode ficar vazio",
             },
+          },
+        },
+        url: {
+          type: Sequelize.VIRTUAL,
+          get() {
+            return `${appConfig.url}/images/${this.getDataValue("filename")}`;
           },
         },
       },

@@ -50,6 +50,7 @@ app.use(express.json());
 
 // Configuração de arquivos estáticos
 app.use(express.static(path.join(__dirname, "./global/html")));
+app.use(express.static(path.join(__dirname, "./projetos/api_rest/uploads")));
 
 app.use(
   "/landing_page",
