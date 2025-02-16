@@ -1,6 +1,6 @@
 const User = require("../models/User");
 
-class HomeController {
+class UserController {
   async index(req, res) {
     try {
       const users = await User.findAll({ attributes: ["id", "nome", "email"] });
@@ -75,4 +75,4 @@ class HomeController {
   }
 }
 
-module.exports = new HomeController();
+module.exports = new UserController();

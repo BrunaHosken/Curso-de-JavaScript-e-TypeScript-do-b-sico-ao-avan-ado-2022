@@ -25,14 +25,56 @@
         <p>Link para acessar no Insomnia -> http://35.247.229.37/api_rest</p>
 
         <ul class="info-route">
-          <li class="toggle-info">Index</li>
+          <li class="toggle-info">Home</li>
           <ul class="info-data">
-            <li>Rota: <code>/home</code></li>
+            <li>Rota: <code>/</code></li>
             <li>Tipo: <code>GET</code></li>
             <li>
               Dados para enviar: <code>Não é necessário enviar dados</code>
             </li>
-            <li>Exemplo retorno: <code>Status 200 - OK</code></li>
+            <li>
+              Exemplo retorno:
+              <code>"Bem vindo a api rest com CRUD da escola!"</code>
+            </li>
+          </ul>
+
+          <li class="toggle-info">Tokens</li>
+          <ul class="info-data">
+            <li>O que faz: Gera o token de autenticação com prazo de 7 dias</li>
+            <li>Rota: <code>/tokens/</code></li>
+            <li>Tipo: <code>POST</code></li>
+
+            <li>
+              Dados para enviar:
+              <pre>
+{
+  "email": "teste@mail.com",
+  "password": "abc123"
+}
+             </pre
+              >
+            </li>
+            <li>
+              Exemplo retorno:
+              <pre>
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImVt
+            YWlsIjoidGVzdGVAbWFpbC5jb20iLCJpYXQiOjE3Mzk1NTU3OTYsImV4c
+            CI6MTc0MDE2MDU5Nn0.1_SwbmpgpvCyIwqt3oG8QjVnGyqo6xv4eOc5IbhMc64"
+}</pre
+              >
+            </li>
+            <li>Possíveis Erros:</li>
+            <ul>
+              <li>
+                Status: 401
+                <pre>
+{
+  "errors": ["Credenciais inválidas", "Usuário não existe", "Senha inválida"]
+}</pre
+                >
+              </li>
+            </ul>
           </ul>
 
           <li class="toggle-info">Usuário</li>
@@ -87,7 +129,19 @@
 }</pre
                 >
               </li>
+              <li>Possíveis Erros:</li>
+              <ul>
+                <li>
+                  Status: 401
+                  <pre>
+{
+  "errors": ["Login required", "Usuário inválido", "Token expirado ou inválido"]
+}</pre
+                  >
+                </li>
+              </ul>
             </ul>
+
             <li class="toggle-info">Cadastrar Usuário</li>
             <ul class="info-data">
               <li>O que faz: Cadastra um novo usuário</li>
@@ -129,6 +183,17 @@
 </pre
                 >
               </li>
+              <li>Possíveis Erros:</li>
+              <ul>
+                <li>
+                  Status: 400
+                  <pre>
+{
+  "errors": [ "Campo nome deve ter entre 3 e 255 caracteres", "Email já existe", "Email inválido", "A senha precisa ter entre 6 e 50 caracteres"]
+}</pre
+                  >
+                </li>
+              </ul>
             </ul>
 
             <li class="toggle-info">Editar Usuário</li>
@@ -180,8 +245,27 @@
 </pre
                 >
               </li>
-            </ul>
 
+              <li>Possíveis Erros:</li>
+              <ul>
+                <li>
+                  Status: 400
+                  <pre>
+{
+  "errors": [ "Campo nome deve ter entre 3 e 255 caracteres", "Email já existe", "Email inválido", "A senha precisa ter entre 6 e 50 caracteres"]
+}</pre
+                  >
+                </li>
+                <li>
+                  Status: 401
+                  <pre>
+{
+  "errors": ["Login required", "Usuário inválido", "Token expirado ou inválido"]
+}</pre
+                  >
+                </li>
+              </ul>
+            </ul>
             <li class="toggle-info">Excluir Usuário</li>
             <ul class="info-data">
               <li>O que faz: Excluir o usuario logado</li>
@@ -200,35 +284,322 @@
                 Exemplo retorno:
                 <pre>"Usuário excluido!"</pre>
               </li>
+              <li>Possíveis Erros:</li>
+              <ul>
+                <li>
+                  Status: 401
+                  <pre>
+{
+  "errors": ["Login required", "Usuário inválido", "Token expirado ou inválido"]
+}</pre
+                  >
+                </li>
+              </ul>
             </ul>
           </ul>
 
-          <li class="toggle-info">Tokens</li>
+          <li class="toggle-info">Alunos</li>
           <ul class="info-data">
-            <li>O que faz: Gera o token de autenticação com prazo de 7 dias</li>
-            <li>Rota: <code>/tokens/</code></li>
-            <li>Tipo: <code>POST</code></li>
+            <li class="toggle-info">Listar Alunos</li>
+            <ul class="info-data">
+              <li>O que faz: Lista todos os alunos</li>
+              <li>Rota: <code>/alunos/</code></li>
+              <li>Tipo: <code>GET</code></li>
+              <li>
+                Dados para enviar: <code>Não é necessário enviar dados</code>
+              </li>
+              <li>
+                Exemplo retorno:
+                <pre>
+[
+  {
+  "id": 2,
+  "nome": "Teste",
+  "sobrenome": "Teste",
+  "email": "teste@gmail.com",
+  "idade": 27,
+  "peso": 42,
+  "altura": 1.46,
+  "created_at": "2025-02-16T17:36:35.000Z",
+  "updated_at": "2025-02-16T17:37:26.000Z"
+  },
+  {
+  "id": 3,
+  "nome": "Teste",
+  "sobrenome": "Teste",
+  "email": "teste2@gmail.com",
+  "idade": 27,
+  "peso": 42,
+  "altura": 1.46,
+  "created_at": "2025-02-16T17:36:55.000Z",
+  "updated_at": "2025-02-16T17:36:55.000Z"
+  }
+]</pre
+                >
+              </li>
+            </ul>
 
-            <li>
-              Dados para enviar:
-              <pre>
+            <li class="toggle-info">Listar Aluno por Id</li>
+            <ul class="info-data">
+              <li>O que faz: Lista um aluno especifico</li>
+              <li>Rota: <code>/alunos/:id</code></li>
+              <li>Tipo: <code>GET</code></li>
+
+              <li>
+                Dados para enviar: É necessário incluir o ID do aluno na URL.
+                <br />
+                Exemplo:
+                <code>/alunos/2</code>
+              </li>
+              <li>
+                Exemplo retorno:
+                <pre>
 {
-  "email": "teste@mail.com",
-  "password": "abc123"
-}
-             </pre
-              >
-            </li>
-            <li>
-              Exemplo retorno:
-              <pre>
-{
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImVt
-            YWlsIjoidGVzdGVAbWFpbC5jb20iLCJpYXQiOjE3Mzk1NTU3OTYsImV4c
-            CI6MTc0MDE2MDU5Nn0.1_SwbmpgpvCyIwqt3oG8QjVnGyqo6xv4eOc5IbhMc64"
+  "id": 2,
+  "nome": "Teste",
+  "sobrenome": "Teste",
+  "email": "teste@gmail.com",
+  "idade": 27,
+  "peso": 42,
+  "altura": 1.46,
+  "created_at": "2025-02-16T17:36:35.000Z",
+  "updated_at": "2025-02-16T17:36:35.000Z"
 }</pre
-              >
-            </li>
+                >
+              </li>
+
+              <li>Possíveis Erros:</li>
+              <ul>
+                <li>
+                  Status: 400
+                  <pre>
+{
+  "errors": [
+    "ID não enviado",
+    "Aluno não existe",
+  ]
+}</pre
+                  >
+                </li>
+              </ul>
+            </ul>
+            <li class="toggle-info">Cadastrar Aluno</li>
+            <ul class="info-data">
+              <li>O que faz: Cadastra um novo aluno</li>
+              <li>Rota: <code>/alunos/</code></li>
+              <li>Tipo: <code>POST</code></li>
+              <li>Necesário token obtido no <code>/tokens/</code></li>
+
+              <li>
+                Dados para enviar:
+                <pre>
+{
+  "nome": "Teste",
+  "sobrenome": "Teste",
+  "email": "teste@gmail.com",
+  "idade": 27,
+  "peso": 42,
+  "altura":1.46
+}</pre
+                >
+              </li>
+              <ul>
+                <li>Validações:</li>
+                <ul>
+                  Nome: Campo deve ter entre 3 e 255 caracteres
+                </ul>
+                <ul>
+                  Sobrenome: Campo deve ter entre 3 e 255 caracteres
+                </ul>
+                <ul>
+                  Email: Deve ser do tipo email (Ex: @mail.com)
+                </ul>
+                <ul>
+                  Idade: Campo precisa ser um número inteiro
+                </ul>
+                <ul>
+                  Peso: Campo precisa ser um número inteiro ou de ponto
+                  flutuante
+                </ul>
+                <ul>
+                  Altura: Campo precisa ser um número inteiro ou de ponto
+                  flutuante
+                </ul>
+              </ul>
+
+              <li>
+                Exemplo retorno:
+                <pre>
+{
+  "id": 3,
+  "nome": "Teste",
+  "sobrenome": "Teste",
+  "email": "teste2@gmail.com",
+  "idade": 27,
+  "peso": 42,
+  "altura": 1.46,
+  "updated_at": "2025-02-16T17:36:55.364Z",
+  "created_at": "2025-02-16T17:36:55.364Z"
+}</pre
+                >
+              </li>
+              <li>Possíveis Erros:</li>
+              <ul>
+                <li>
+                  Status: 400
+                  <pre>
+{
+  "errors": [
+    "Campo nome deve ter entre 3 e 255 caracteres",
+    "Campo sobrenome deve ter entre 3 e 255 caracteres",
+    "Email inválido",
+    "Email já existe",
+    "Campo idade precisa ser um número inteiro",
+    "Campo peso precisa ser um número inteiro ou de ponto flutuante",
+    "Campo altura precisa ser um número inteiro ou de ponto flutuante"
+  ]
+}</pre
+                  >
+                </li>
+                <li>
+                  Status: 401
+                  <pre>
+{
+  "errors": ["Login required", "Usuário inválido", "Token expirado ou inválido"]
+}</pre
+                  >
+                </li>
+              </ul>
+            </ul>
+
+            <li class="toggle-info">Editar Aluno</li>
+            <ul class="info-data">
+              <li>O que faz: Edita um aluno específico</li>
+              <li>Rota: <code>/alunos/:id</code></li>
+              <li>Tipo: <code>PUT</code></li>
+              <li>Necesário token obtido no <code>/tokens/</code></li>
+
+              <li>
+                Dados para enviar:
+                <code>É necessário incluir o ID do aluno na URL.</code>
+                <br />
+                Exemplo:
+                <code>/alunos/2</code>
+                <br />
+                Exemplo de dados a serem enviados:
+                <pre>
+{ 
+  "nome": "Teste Editado"
+}</pre
+                >
+              </li>
+              <li>Validações:</li>
+              <ul>
+                Nome: Campo deve ter entre 3 e 255 caracteres
+              </ul>
+              <ul>
+                Sobrenome: Campo deve ter entre 3 e 255 caracteres
+              </ul>
+              <ul>
+                Email: Deve ser do tipo email (Ex: @mail.com)
+              </ul>
+              <ul>
+                Idade: Campo precisa ser um número inteiro
+              </ul>
+              <ul>
+                Peso: Campo precisa ser um número inteiro ou de ponto flutuante
+              </ul>
+              <ul>
+                Altura: Campo precisa ser um número inteiro ou de ponto
+                flutuante
+              </ul>
+              <li>
+                Exemplo retorno:
+                <pre>
+{
+  "id": 2,
+  "nome": "Teste Editado",
+  "sobrenome": "Teste",
+  "email": "teste@gmail.com",
+  "idade": 27,
+  "peso": 42,
+  "altura": 1.46,
+  "updated_at": "2025-02-16T17:37:26.939Z",
+  "created_at": "2025-02-16T17:36:55.364Z"
+}</pre
+                >
+              </li>
+              <li>Possíveis Erros:</li>
+              <ul>
+                <li>
+                  Status: 400
+                  <pre>
+{
+  "errors": [
+    "ID não enviado",
+    "Aluno não existe",
+    "Campo nome deve ter entre 3 e 255 caracteres",
+    "Campo sobrenome deve ter entre 3 e 255 caracteres",
+    "Email inválido",
+    "Email já existe",
+    "Campo idade precisa ser um número inteiro",
+    "Campo peso precisa ser um número inteiro ou de ponto flutuante",
+    "Campo altura precisa ser um número inteiro ou de ponto flutuante"
+  ]
+}</pre
+                  >
+                </li>
+                <li>
+                  Status: 401
+                  <pre>
+{
+  "errors": ["Login required", "Usuário inválido", "Token expirado ou inválido"]
+}</pre
+                  >
+                </li>
+              </ul>
+            </ul>
+
+            <li class="toggle-info">Excluir Aluno</li>
+            <ul class="info-data">
+              <li>O que faz: Excluir um aluno específico</li>
+              <li>Rota: <code>/alunos/:id</code></li>
+              <li>Tipo: <code>DELETE</code></li>
+              <li>Necesário token obtido no <code>/tokens/</code></li>
+
+              <li>
+                Dados para enviar:
+                <code>É necessário incluir o ID do aluno na URL.</code>
+                <br />
+                Exemplo:
+                <code>/alunos/2</code>
+              </li>
+              <li>
+                Exemplo retorno:
+                <pre>"Aluno excluido!"</pre>
+              </li>
+              <li>Possíveis Erros:</li>
+              <ul>
+                <li>
+                  Status: 400
+                  <pre>
+{
+  "errors": [
+    "ID não enviado",
+    "Aluno não existe",
+  ]
+}</pre
+                  >
+                </li>
+                <li>
+                  Status: 401
+                  <pre>
+{
+  "errors": ["Login required", "Usuário inválido", "Token expirado ou inválido"]
+}</pre
+                  >
+                </li>
+            </ul>
           </ul>
         </ul>
       </div>

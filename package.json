@@ -8,7 +8,7 @@
     "start": "nodemon server.js --ignore public --ignore frontend",
     "dev": "webpack -w",
     "migration:api": "sequelize migration:create --migrations-path projetos/api_rest/src/database/migrations",
-    "migrate:api": "sequelize db:migrate --migrations-path projetos/api_rest/src/database/migrations",
+    "migrate:all": "node run-migrations.js",
     "seed:api": "sequelize seed:generate --seeders-path projetos/api_rest/src/database/seed",
     "migrate:undo:api": "sequelize db:migrate:undo --migrations-path projetos/api_rest/src/database/migrations",
     "seed:all": "node run-seeds.js"
