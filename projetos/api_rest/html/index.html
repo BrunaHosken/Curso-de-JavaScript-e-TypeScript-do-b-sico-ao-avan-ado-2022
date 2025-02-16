@@ -22,7 +22,7 @@
       <h1>Documentação Api Rest</h1>
 
       <div class="data">
-        <p>Link para acessar no Insomnia -> http://35.247.229.37/api_rest</p>
+        <p>Link para acessar a API -> http://35.247.229.37/api_rest</p>
 
         <ul class="info-route">
           <li class="toggle-info">Home</li>
@@ -76,6 +76,51 @@
               </li>
             </ul>
           </ul>
+
+          <li class="toggle-info">Fotos</li>
+<ul class="info-data">
+    <li>O que faz: Cadastra um novo foto para o aluno</li>
+    <li>Rota: <code>/fotos/</code></li>
+    <li>Tipo: <code>POST</code></li>
+    <li>Necesário token obtido no <code>/tokens/</code></li>
+
+    <li>
+        Dados para enviar: <code>Necessário adicionar um arquivo no Multipartform com formato PNG ou JPG</code>
+        <br>
+        Exemplo dos campos para envio: 
+
+<pre>foto: foto.png  
+user_id: 2</pre>
+    </li>
+    <li>
+        Exemplo retorno:
+        <pre>
+{
+  "id": 2,
+  "originalname": "foto.png",
+  "filename": "1739741833077_10673.png",
+  "updated_at": "2025-02-16T21:37:13.099Z",
+  "created_at": "2025-02-16T21:37:13.099Z"
+}</pre>
+    </li>
+    <li>Possíveis Erros:</li>
+    <ul>
+        <li>
+            Status: 401
+            <pre>
+{
+  "errors": ["Credenciais inválidas", "Usuário não existe", "Senha inválida"]
+}</pre>
+        </li>
+        <li>
+            Status: 400
+            <pre>
+{
+  "errors": ["Aluno não existe", "Arquivo precisa ser PNG ou JPG"]
+}</pre>
+        </li>
+    </ul>
+</ul>
 
           <li class="toggle-info">Usuário</li>
           <ul class="info-data">
@@ -302,7 +347,7 @@
           <ul class="info-data">
             <li class="toggle-info">Listar Alunos</li>
             <ul class="info-data">
-              <li>O que faz: Lista todos os alunos</li>
+              <li>O que faz: Lista todos os alunos com suas fotos</li>
               <li>Rota: <code>/alunos/</code></li>
               <li>Tipo: <code>GET</code></li>
               <li>
@@ -313,26 +358,28 @@
                 <pre>
 [
   {
-  "id": 2,
-  "nome": "Teste",
-  "sobrenome": "Teste",
-  "email": "teste@gmail.com",
-  "idade": 27,
-  "peso": 42,
-  "altura": 1.46,
-  "created_at": "2025-02-16T17:36:35.000Z",
-  "updated_at": "2025-02-16T17:37:26.000Z"
+    "id": 2,
+    "nome": "Teste",
+    "sobrenome": "Teste",
+    "email": "teste@gmail.com",
+    "idade": 27,
+    "peso": 42,
+    "altura": 1.46,
+    "Fotos": [
+        {
+          "filename": "1739741771906_15286.png"
+        }
+      ]
   },
   {
-  "id": 3,
-  "nome": "Teste",
-  "sobrenome": "Teste",
-  "email": "teste2@gmail.com",
-  "idade": 27,
-  "peso": 42,
-  "altura": 1.46,
-  "created_at": "2025-02-16T17:36:55.000Z",
-  "updated_at": "2025-02-16T17:36:55.000Z"
+    "id": 3,
+    "nome": "Teste",
+    "sobrenome": "Teste",
+    "email": "teste2@gmail.com",
+    "idade": 27,
+    "peso": 42,
+    "altura": 1.46,
+    "Fotos": []
   }
 ]</pre
                 >
@@ -341,7 +388,7 @@
 
             <li class="toggle-info">Listar Aluno por Id</li>
             <ul class="info-data">
-              <li>O que faz: Lista um aluno especifico</li>
+              <li>O que faz: Lista um aluno especifico e suas fotos</li>
               <li>Rota: <code>/alunos/:id</code></li>
               <li>Tipo: <code>GET</code></li>
 
@@ -362,8 +409,11 @@
   "idade": 27,
   "peso": 42,
   "altura": 1.46,
-  "created_at": "2025-02-16T17:36:35.000Z",
-  "updated_at": "2025-02-16T17:36:35.000Z"
+  "Fotos": [
+    {
+      "filename": "1739741771906_15286.png"
+    }
+  ]
 }</pre
                 >
               </li>
