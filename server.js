@@ -67,7 +67,15 @@ app.use(
   express.static(path.resolve(__dirname, "./projetos/projetoagenda/public"))
 );
 
-app.use("/public", express.static(path.resolve(__dirname, "public")));
+app.use(
+  "/agenda/public",
+  express.static(path.resolve(__dirname, "./projetos/projetoagenda/public"))
+);
+
+app.use(
+  "/lista_tarefas",
+  express.static(path.resolve(__dirname, "./public/build"))
+);
 
 app.use(apiRest);
 
@@ -105,5 +113,6 @@ app.on("pronto", () => {
     console.log(
       "Servidor executando na porta 3000, acesse http://localhost:3000"
     );
+    console.log();
   });
 });

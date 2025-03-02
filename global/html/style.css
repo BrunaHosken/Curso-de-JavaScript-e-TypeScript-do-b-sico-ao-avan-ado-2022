@@ -87,6 +87,9 @@ h6 {
 .links a:nth-of-type(3)::before {
   content: "JavaScript, Node, Express e SQL (MariaDB)";
 }
+.links a:nth-of-type(4)::before {
+  content: "React";
+}
 
 .disabled {
   color: #ccc !important;
