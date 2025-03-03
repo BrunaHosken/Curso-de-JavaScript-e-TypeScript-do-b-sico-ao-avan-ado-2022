@@ -83,4 +83,22 @@ export default [
     files: ["**/*.ts"],
     ...tseslint.configs.recommended,
   },
+
+  {
+    parser: "@babel/eslint-parser",
+    parserOptions: {
+      requireConfigFile: false,
+      babelOptions: {
+        presets: ["@babel/preset-react"],
+      },
+    },
+  },
+
+  {
+    files: ["**/*.js"],
+    languageOptions: {
+      sourceType: "module",
+      ecmaVersion: "latest",
+    },
+  },
 ];
