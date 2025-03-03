@@ -1,6 +1,13 @@
+* {
+  margin: 0;
+  padding: 0;
+  background-color: #eee;
+}
+
 body {
   font-family: "Open Sans", sans-serif;
   font-size: 1.5rem;
+  margin: 5rem;
 }
 
 h1,
@@ -22,14 +29,19 @@ h6 {
 
 .project,
 .links {
-  display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
 
+.links {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
 .links a {
-  display: block;
+  display: grid;
+  justify-content: center;
   padding: 2rem;
   color: black;
   font-size: 1.5rem;
@@ -56,14 +68,15 @@ h6 {
 .links a::before {
   content: "";
   position: absolute;
-  left: 100%;
-  top: 90%;
+  left: 15%;
+  top: 125%;
   transform: translateY(-50%);
   font-size: 1rem;
-  color: #333;
-  background-color: #fff;
-  padding: 0.2rem 0.5rem;
-  border: 1px solid #ccc;
+  color: #fff;
+  background-color: crimson;
+  padding: 0.5rem;
+  border: 1px solid crimson;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   visibility: hidden;
   opacity: 0;
