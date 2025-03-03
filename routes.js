@@ -42,7 +42,9 @@ route.get("/landing_page", (req, res) => {
 
 // Rota para api rest
 route.get("/api_rest", (req, res) => {
-  res.sendFile(path.join(__dirname, "./projetos/api_rest/html/index.html"));
+  res.sendFile(
+    path.join(__dirname, "./projetos/api_rest/html/documentacao/index.html")
+  );
 });
 
 //Rotas lista tarefas

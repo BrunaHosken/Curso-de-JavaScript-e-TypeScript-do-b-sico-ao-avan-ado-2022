@@ -59,7 +59,14 @@ app.use(
 
 app.use(
   "/api_rest",
-  express.static(path.resolve(__dirname, "./projetos/api_rest/html"))
+  express.static(
+    path.resolve(__dirname, "./projetos/api_rest/html/documentacao")
+  )
+);
+
+app.use(
+  "/api_rest/assets",
+  express.static(path.resolve(__dirname, "./projetos/api_rest/html/assets"))
 );
 
 app.use(
