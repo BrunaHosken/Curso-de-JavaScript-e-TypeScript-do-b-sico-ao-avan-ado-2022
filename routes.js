@@ -49,7 +49,7 @@ route.get("/api_rest", (req, res) => {
 
 //Rotas lista tarefas
 route.get("/lista_tarefas", (req, res) => {
-  res.sendFile(path.join(__dirname, "./public/build/index.html"));
+  res.sendFile(path.join(__dirname, "./public/lista_tarefas/build/index.html"));
 });
 
 module.exports = route;

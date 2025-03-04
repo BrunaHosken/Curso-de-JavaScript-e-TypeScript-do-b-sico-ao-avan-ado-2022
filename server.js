@@ -83,7 +83,7 @@ app.use(
 
 app.use(
   "/lista_tarefas",
-  express.static(path.resolve(__dirname, "./public/build"))
+  express.static(path.resolve(__dirname, "./public/lista_tarefas/build"))
 );
 
 app.use(apiRest);
