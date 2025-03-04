@@ -48,6 +48,13 @@ app.use(
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.use((req, res, next) => {
+  if (req.headers["x-forwarded-proto"] === "https") {
+    return res.redirect(`http://${req.headers.host}${req.url}`);
+  }
+  next();
+});
+
 // Configuração de arquivos estáticos
 app.use(express.static(path.join(__dirname, "./global/html")));
 app.use(express.static(path.join(__dirname, "./projetos/api_rest/uploads")));
@@ -67,11 +74,6 @@ app.use(
 app.use(
   "/api_rest/assets",
   express.static(path.resolve(__dirname, "./projetos/api_rest/html/assets"))
-);
-
-app.use(
-  "/agenda/public",
-  express.static(path.resolve(__dirname, "./projetos/projetoagenda/public"))
 );
 
 app.use(
@@ -120,6 +122,5 @@ app.on("pronto", () => {
     console.log(
       "Servidor executando na porta 3000, acesse http://localhost:3000"
     );
-    console.log();
   });
 });
